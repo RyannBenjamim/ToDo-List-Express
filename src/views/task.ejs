@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R-Productive | <%= task.title %></title>
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header") %>
+
+    <div class="container">
+      <h1 class="title"><%= task.title %></h1>
+
+      <div class="task-date">
+        <div><span>Criado em: <%= task.createdAt %></span> | <span>Atualizado em: <%= task.updatedAt %></span></div>
+      </div>
+
+      <div class="separator"></div>
+
+      <p class="status-task">
+        Status da tarefa:
+        <span class="<%= task.isCompleted ? "isCompleted" : ""  %>">
+          <%= task.isCompleted ? "Completa" : "Imcompleta" %>
+        </span>
+      </p>
+
+      <div class="separator"></div>
+
+      <pre class="content-task"><%= task.content %></pre>
+
+      <div class="separator"></div>
+
+      <div class="taskpage-btns">
+        <form
+          action="/lists/<%= idlist %>/<%= task.id %>/completed?redirect=specific-task"
+          method="post"
+        >
+          <button type="submit" class="btn" id="task-completed">
+            <%= task.isCompleted ? "completado" : "completar" %>
+          </button>
+        </form>
+
+        <a href="/lists/<%= idlist %>/<%= task.id %>/edit"><div class="btn">editar</div></a>
+
+        <form action="/lists/<%= idlist %>/<%= task.id %>/delete" id="delete-form" method="post">
+          <button type="submit" class="btn" id="task-completed">excluir</button>
+        </form>
+      </div>
+
+      <div class="separator"></div>
+
+      <a href="/lists/<%= idlist %>" class="btn" id="back-btn">voltar</a>
+    </div>
+
+    <script src="/assets/confirmDeletion.js"></script>
+  </body>
+</html>
