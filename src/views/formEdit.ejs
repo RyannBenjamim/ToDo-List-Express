@@ -23,10 +23,13 @@
           name="title"
           placeholder="Título da tarefa"
           value="<%= task.title %>"
+          required
         />
 
         <label for="content">Conteúdo:</label>
-        <textarea name="content" id="content"><%= task.content %></textarea>
+        <textarea name="content" id="content" required>
+          <%= task.content %>
+        </textarea>
 
         <button type="submit" class="btn">Editar Tarefa</button>
       </form>
